@@ -93,7 +93,9 @@ class AnalyticsDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-    ids: state.analytics.ids,
+    deliveries: state.analytics.deliveries,
+    distributions: state.analytics.distributions,
+    throughputs: state.analytics.throughputs,
 });
 
 export default

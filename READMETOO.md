@@ -98,12 +98,17 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - Hmm I don't understand how the data is structured yet.
 - I'll style the graps later. First we should feed the correct data into the graps.
 - Should we create four action generator for each API or we just put the four API into a single action generator?
-- I think it's better to create four action generator, to make it more modular and easier to refactor.
+- I think it's better to create four action generator, to make it more modular and easier to refactor. For example, maybe we can use it on other component later?
 - Great, the action generators are done. The next step is to insert them into the data for the graph.
 
 
-### 16:20 - 
+### 16:20 - 16:50
 - I better implement the `?week` or `?month` choice for the deliveries later.
 - The data from the backend isn't clean yet (it contained an id key on the object). Where should we clean this? action generator? reducer? or on the component?
 - I think it's better in the reducer, if the backend changed, maybe the API will return other data. In that case, we just need to add a little bit of code to the reducer, without changing the action generator.
 - Okay great. Now we have the important data on our store, we just need to input them into the graphs.
+- Our naming isn't consistent yet. We use singular for action generator (e.g. delivery), but we use plural for reducer and states (e.g. deliveries).
+- So the objet from the backend is structured like `{ timestamp: x, value: y}`, but the chart.js data looked like `{ labels: [x], datasets: [{ data: y }]}` so we should use convert the value appropriately.
+- I suppose all the graph's x axis is time, and the y axis values.
+- I wonder why the timestamp on `analytics/:id/delivery` is all the same for all values, either with `?month` or `?week` parameter. And there's no timestamp on `analytics/:id/throughput` yet. 
+- And I think we don't have the API for 'Durchschnittliche Verweildauer in Zone:' graph yet? There's 'zones' key on `analytics/:id`, but it doesn't have any 'length of stay in zone' property. Maybe we can add that?
