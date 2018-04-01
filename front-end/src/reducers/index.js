@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
-// import counter from './counter'
+import analytics from './AnalyticsReducer'
 
 export default combineReducers({
     routing: routerReducer,
-    // counter
+    analytics
 })
