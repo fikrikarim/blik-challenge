@@ -40,3 +40,4 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 ### 09:32 - 
 - So the first thing I should do is to create the Analytics component for the `/analytics` path, and the AnalyticDetails component for `/analytics/<id>` path.
 - Emm first I want to restructure the project a little bit. I want to make the App.js in the root of src folder to make it cleaner, and restructure the modules folder into actions and reducers folder. And also rename the containers folder into components because at this stage we're not using containers yet. (Later will be needed after refactoring code).
+- How about we redirect users who are from the home page to analytics page? Because we're not using homepage yet. No. Maybe later we'll create the home page that simulate the landing page, and authentication forms before the user can visit the analytics page. So first from home page we create a link to go to analytics page.
