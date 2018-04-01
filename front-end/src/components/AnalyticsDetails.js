@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Line, Bar } from 'react-chartjs-2';
+import { analyticsDelivery, analyticsDistribution, analyticsThroughput } from '../actions';
 
 const data = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -64,10 +66,16 @@ const data2 = {
     ]
 };
 
-class AnalyticDetails extends Component {
+class AnalyticsDetails extends Component {
     constructor(props) {
         super(props)
         this.analyticsId = this.props.match.params.id
+    }
+
+    componentDidMount() {
+        this.props.analyticsDelivery(this.analyticsId)
+        this.props.analyticsDistribution(this.analyticsId)
+        this.props.analyticsThroughput(this.analyticsId)
     }
 
     render() {
@@ -84,4 +92,16 @@ class AnalyticDetails extends Component {
     }
 }
 
-export default AnalyticDetails;
+const mapStateToProps = state => ({
+    ids: state.analytics.ids,
+});
+
+export default
+    connect(
+        mapStateToProps,
+        {
+            analyticsDelivery,
+            analyticsDistribution,
+            analyticsThroughput,
+        }
+    )(AnalyticsDetails);

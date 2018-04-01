@@ -92,8 +92,14 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - Should we refactor each graph into separate components? Nah, let's do that later.
 - So we start by creating the deliveries graph.
 
-### 15:37 - 
+### 15:37 - 16:20
 - I think instead of creating a React component for each graph, it's better create a stateless functional component. We'll fetch the data on the AnalyticsDetails component and pass the data into each functional component.
 - Oh I think we don't need to create any additional component at all. The `react-chartjs-2` component has enough configuration, so we just need to modify the data to put into the component from `react-chartjs-2`.
 - Hmm I don't understand how the data is structured yet.
 - I'll style the graps later. First we should feed the correct data into the graps.
+- Should we create four action generator for each API or we just put the four API into a single action generator?
+- I think it's better to create four action generator, to make it more modular and easier to refactor.
+- Great, the action generators are done. The next step is to insert them into the data for the graph.
+
+
+### 16:20 - 

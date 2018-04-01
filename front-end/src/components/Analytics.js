@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { analyticsList } from '../actions';
 import { Link } from 'react-router-dom';
+import { analyticsList } from '../actions';
 
 class Analytics extends Component {
     componentDidMount(){
@@ -38,8 +38,10 @@ const mapStateToProps = state => ({
     ids: state.analytics.ids,
 });
 
-export default connect(
-    mapStateToProps, 
-    {
-        analyticsList
-})(Analytics);
+export default 
+    connect(
+        mapStateToProps, 
+        {
+            analyticsList
+        }
+    )(Analytics);
