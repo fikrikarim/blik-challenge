@@ -66,3 +66,20 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 ### 12:40 - 12:49
 - Ohh okay. I forgot react-router provides Link component exactly for that.
 - I think I should rename the AnalyticDetails into AnalyticsDetails. That little s can be confusing in the future.
+
+### 13:16 - 13:44
+- Now it's time to understand (helped by google translate) the mockup for AnalyticsDetails Component! It looks like component page will send requests to the rest of the API.
+- Die obere linke ist Gesamtzahl SLTs im Kreislauf. Darunter ist Anzahl der lieferungen pro: woche oder monat graph. Rechts davon ist Prozess Durchlaufs Zeit graph, mit maximalen, minimalen und durchschnittlichen Linien. Darunter ist Verteilung der SLTs im Kreislauf graph, wir können alle SLTs, leere SLTs oder vollständige SLTs auswählen. Darunter ist Durchschnittliche Verweildauer in Zone graph. Und unten rechts ist eine Karte, die die Standorte zeigt. Es tut mir leid, wenn die Übersetzungen schrecklich sind. Bitte beschuldige Google Übersetzer. Aber deutsche Sprache sieht fantastisch aus.
+
+### 13:44 - 14:00
+- I don't understand what KW is. Is it week? 
+- Ohh okay it's [kalenderwoche](https://en.pons.com/translate/german-english/KW)
+- Now I kinda undertstand which API belongs to which graph.
+- Now we need a library for creating a graph. Is D3.js the right library for this? (I often heard about D3.js, but I don't have any experiences creating a graph with js. I usually use excel. haha just kidding.)
+
+### 14:00 - 14:29
+- It's time to look at the D3.js documentations.
+- Nope. D3.js is too basic for this project. We should search for more robust charting libraries.
+- After reading this [article](https://hackernoon.com/9-best-javascript-charting-libraries-46e7f4dc34e6), I decided to use Chart.js, because it shows first on google search, has highest github stars number, and has beautiful landing pages. I hope it can create line and stacked bar chart.
+- Oh yeah Chart.js use < canvas> on HTML. Is there any library that create the wrapper for React.js?
+- I just want to use a simple Chart.js wrapper for React. The choices are between [react-chartjs-2](https://github.com/jerairrest/react-chartjs-2) and [react-chartjs](https://github.com/reactjs/react-chartjs). I think I will use the react-chartjs-2, despite having fewer github stars than react-chartjs, because react-chartjs-2 looks more maintained (more closed issues, even has more opened too).
