@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import Home from './components/Home'
 import Analytics from './components/Analytics'
+import AnalyticDetails from './components/AnalyticDetails'
 
 const App = () => (
     <div>   
@@ -14,6 +15,7 @@ const App = () => (
         <main>
             <Route exact path="/" component={Home} />
             <Route exact path="/analytics" component={Analytics} />
+            <Route exact path="/analytics/:id" component={AnalyticDetails} />
         </main>
     </div>
 )
