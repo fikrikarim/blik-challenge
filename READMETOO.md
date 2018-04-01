@@ -62,4 +62,7 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - For fetching the data, I put the action generator function on `componentDidMount`, after reading [this](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/) and [this](https://www.robinwieruch.de/react-fetching-data/) post. (On my previous project I put it on `componentWillMount` hehe)
 - Now we should render the ids on analytics page, and when the individual id is clicked, the page will change to `analytics/:id`
 - _I managed to list all the ids on the table using map function. But how to make the link dynamically to go to `analytics/:id` using the react-router API? I used to do that with button, but with a link?_
+
+### 12:40 - 12:49
 - Ohh okay. I forgot react-router provides Link component exactly for that.
+- I think I should rename the AnalyticDetails into AnalyticsDetails. That little s can be confusing in the future.
