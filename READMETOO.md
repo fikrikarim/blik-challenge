@@ -37,7 +37,7 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 ```
 - Initialize the store, the `index.js` file, `App` file, and the example of action and reducer. On this example they don't separate the action and reducer folders yet.
 
-### 09:32 - 10:32
+### 09:32 - 10:02
 - So the first thing I should do is to create the Analytics component for the `/analytics` path, and the AnalyticDetails component for `/analytics/<id>` path.
 - Emm first I want to restructure the project a little bit. I want to make the App.js in the root of src folder to make it cleaner, and restructure the modules folder into actions and reducers folder. And also rename the containers folder into components because at this stage we're not using containers yet. (Later will be needed after refactoring code).
 - How about we redirect users who are from the home page to analytics page? Because we're not using homepage yet. No. Maybe later we'll create the home page that simulate the landing page, and authentication forms before the user can visit the analytics page. So first from home page we create a link to go to analytics page.
@@ -45,6 +45,10 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - Ohh okay cool. Looking at this [page](https://reacttraining.com/react-router/web/example/url-params), it's as easy as adding `:id` into the Route path, `/analytics/:id`, and getting them from `match.params.id` on the component.
 - Should we do the styling first, or connecting to the backend API first? 
 
-### 10:33 -
+### 10:03 -
 - I guess the answer is connecting to the backend API first. Because we should be familiar with the data structure first before go into the styling and organizing them into a neat looking app.
 - Okay. First we should change our Analytics and AnalyticDetails components from stateless functional components into a React Component, because we are going to fetch data from them.
+- Then we should create the action and the reducer for the Analytics component, to fetch data from backend.
+- _Hmm, for my previous project I use the Firebase libarary for communicating with the backend, so I didn't need to configure the endpoint. How to make the endpoint configurable?_
+- Based on [this](https://hackernoon.com/how-to-combine-a-nodejs-back-end-with-a-reactjs-front-end-app-ea9b24715032), and [this](https://daveceddia.com/create-react-app-express-backend/) tutorial there's a way that use `proxy` configuration on `package.json` file. But I think that only work well on development server, and the front-end runs on the same server with back-end.
+- So i decided to use environment variable called REACT_APP_API_URL. I create the configuration file `config.js` that takes environment variable `REACT_APP_API_URL` or use `http://localhost:8000` as the default. In production setting, set the `REACT_APP_API_URL` variable with the desired backend url.
