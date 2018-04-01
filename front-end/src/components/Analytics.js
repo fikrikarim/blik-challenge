@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-export default () => (
-    <div>
-        <h1>Analytics</h1>
-        <p>Analytics Page!</p>
-    </div>
-)
+class Analytics extends Component {
+    render() {
+        return (
+            <div>
+                <h1>Analytics</h1>
+                <p>Analytics Page!</p>
+            </div>
+        );
+    }
+}
+
+export default Analytics;
