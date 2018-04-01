@@ -103,3 +103,7 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 
 
 ### 16:20 - 
+- I better implement the `?week` or `?month` choice for the deliveries later.
+- The data from the backend isn't clean yet (it contained an id key on the object). Where should we clean this? action generator? reducer? or on the component?
+- I think it's better in the reducer, if the backend changed, maybe the API will return other data. In that case, we just need to add a little bit of code to the reducer, without changing the action generator.
+- Okay great. Now we have the important data on our store, we just need to input them into the graphs.
