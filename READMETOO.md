@@ -84,8 +84,16 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - Oh yeah Chart.js use < canvas> on HTML. Is there any library that create the wrapper for React.js?
 - I just want to use a simple Chart.js wrapper for React. The choices are between [react-chartjs-2](https://github.com/jerairrest/react-chartjs-2) and [react-chartjs](https://github.com/reactjs/react-chartjs). I think I will use the react-chartjs-2, despite having fewer github stars than react-chartjs, because react-chartjs-2 looks more maintained (more closed issues, even though it has more opened issues too).
 
-### 14:45 - 
+### 14:45 - 15:06
 - But, does react-chartjs-2 support stacked bar chart?
 - [Yes](https://github.com/jerairrest/react-chartjs-2/issues/220)
 - Let's draw the chart.
 - Hmm, where do I get the data for "Total number of SLTs in the circulation"? I supposed it should be on `analytics/:id` API, but I cannot find it. Let's skip this for now.
+- Should we refactor each graph into separate components? Nah, let's do that later.
+- So we start by creating the deliveries graph.
+
+### 15:37 - 
+- I think instead of creating a React component for each graph, it's better create a stateless functional component. We'll fetch the data on the AnalyticsDetails component and pass the data into each functional component.
+- Oh I think we don't need to create any additional component at all. The `react-chartjs-2` component has enough configuration, so we just need to modify the data to put into the component from `react-chartjs-2`.
+- Hmm I don't understand how the data is structured yet.
+- I'll style the graps later. First we should feed the correct data into the graps.
