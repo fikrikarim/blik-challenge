@@ -53,10 +53,13 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - Based on [this](https://hackernoon.com/how-to-combine-a-nodejs-back-end-with-a-reactjs-front-end-app-ea9b24715032), and [this](https://daveceddia.com/create-react-app-express-backend/) tutorial there's a way that use `proxy` configuration on `package.json` file. But I think that only work well on development server, and the front-end runs on the same server with back-end.
 - So i decided to use environment variable called REACT_APP_API_URL. I create the configuration file `config.js` that takes environment variable `REACT_APP_API_URL` or use `http://localhost:8000` as the default. In production setting, set the `REACT_APP_API_URL` variable with the desired backend url.
 
-### 10:55 - 
+### 10:55 - 12:06
 - _Should I use HTTP request library like [axios](https://github.com/axios/axios)? Or [fetch()](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) API is enough?_
 - On my first tutorial of learning React, I use axios library, and based on this [post](https://medium.com/@thejasonfile/fetch-vs-axios-js-for-making-http-requests-2b261cdd3af5) I think I will use axios library.
 - Finally, it's time to create the action and fetching data from backend for Analytics component!
 - So we create the AnalyticsReducer, AnalyticsActions file with analyticsList function, and connect the Analytics component using connect method from `react-redux`. It took quite some time. I used my previous project for reference on how to wire these things up. And yay it's working.
 - For analyticsList dispatcher, I create three actions, `ANALYTICS_LIST_REQUESTED` `ANALYTICS_LIST_SUCCESS`, and `ANALYTICS_LIST_FAILED`. This is useful for error handling, and for showing loading animation while the request take place. But I think I won't utilize this function on this project, because it can take some time. I should finish the mvp first.
 - For fetching the data, I put the action generator function on `componentDidMount`, after reading [this](https://daveceddia.com/where-fetch-data-componentwillmount-vs-componentdidmount/) and [this](https://www.robinwieruch.de/react-fetching-data/) post. (On my previous project I put it on `componentWillMount` hehe)
+- Now we should render the ids on analytics page, and when the individual id is clicked, the page will change to `analytics/:id`
+- _I managed to list all the ids on the table using map function. But how to make the link dynamically to go to `analytics/:id` using the react-router API? I used to do that with button, but with a link?_
+- Ohh okay. I forgot react-router provides Link component exactly for that.

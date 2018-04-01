@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
     ANALYTICS_LIST_REQUESTED,
-    ANALYTICS_LIST_SUCCESS,
+    ANALYTICS_LIST_SUCCESSED,
     ANALYTICS_LIST_FAILED
 } from './types';
 import { apiUrl } from '../config'
@@ -13,12 +13,10 @@ export const analyticsList = () => {
 
         axios.get(`${url}/analytics`)
             .then(function (response) {
-                dispatch({ type: ANALYTICS_LIST_REQUESTED, payload: response });
-                console.log(response);
+                dispatch({ type: ANALYTICS_LIST_SUCCESSED, payload: response.data });
             })
             .catch(function (error) {
                 dispatch({ type: ANALYTICS_LIST_FAILED, payload: error });
-                console.log(error);
             });
     };
 };
