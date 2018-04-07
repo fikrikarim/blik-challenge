@@ -19,16 +19,17 @@ class AnalyticsDetails extends Component {
     }
 
     render() {
+        const { deliveries, distributions, throughputs } = this.props
         return (
             <div>
                 <h1>Analytic Details Page</h1>
                 <p>Gesamtzahl SLTs im Kreislauf: </p>
                 <p>Number of deliveries per: </p>
-                <AnalyticsDelivery />
+                <AnalyticsDelivery data={deliveries} />
                 <p>Distribution of SLTs in the circulation: </p>
-                <AnalyticsDistribution />
+                <AnalyticsDistribution data={distributions} />
                 <p>Process runtime: </p>
-                <AnalyticsThroughput />
+                <AnalyticsThroughput data={throughputs} />
             </div>
         );
     }

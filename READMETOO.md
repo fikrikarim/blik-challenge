@@ -120,4 +120,10 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 ### 10:39 - 11:01
 - First, we will refactor each graph into separate functional component
 
-### 11:01 -
+### 11:01 - 11:26
+- The first graph we will be working on is the distribution graph, because it has the right (different for each value) timestamp from the backend.
+- How to map the current data structure into the graph data structure? We should transform the data within the functional component yea?
+- I want to try to transform the data using a functiont first. And we try to view only the All SLTs first.
+
+### 13:27 - 
+- We should use moment for displaying the dates from the timestamp.
