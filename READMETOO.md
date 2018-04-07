@@ -112,3 +112,12 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - I suppose all the graph's x axis is time, and the y axis values.
 - I wonder why the timestamp on `analytics/:id/delivery` is all the same for all values, either with `?month` or `?week` parameter. And there's no timestamp on `analytics/:id/throughput` yet. 
 - And I think we don't have the API for 'Durchschnittliche Verweildauer in Zone:' graph yet? There's 'zones' key on `analytics/:id`, but it doesn't have any 'length of stay in zone' property. Maybe we can add that?
+
+## Sat, 7 Apr 2018
+### 10:09 - 10:34
+- Staring at the code, while eating an orange fruit.
+
+### 10:39 - 11:01
+- First, we will refactor each graph into separate functional component
+
+### 11:01 -
