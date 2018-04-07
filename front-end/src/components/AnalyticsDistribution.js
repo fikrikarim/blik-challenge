@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Bar } from 'react-chartjs-2';
 
 
@@ -11,8 +12,6 @@ const template = {
             borderColor: 'rgba(255,99,132,1)',
             borderWidth: 1,
             stack: '1',
-            hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-            hoverBorderColor: 'rgba(255,99,132,1)',
             data: []
         },
         {
@@ -21,8 +20,6 @@ const template = {
             borderColor: 'rgba(155,49,12,1)',
             borderWidth: 1,
             stack: '1',
-            hoverBackgroundColor: 'rgba(155,49,12,0.4)',
-            hoverBorderColor: 'rgba(155,59,12,1)',
             data: []
         },
         {
@@ -31,8 +28,6 @@ const template = {
             borderColor: 'rgba(45,149,102,1)',
             borderWidth: 1,
             stack: '1',
-            hoverBackgroundColor: 'rgba(155,49,12,0.4)',
-            hoverBorderColor: 'rgba(155,59,12,1)',
             data: []
         }
     ]
@@ -40,7 +35,7 @@ const template = {
 
 function transformData(template, arrayOfData) {
     arrayOfData.forEach(data => {
-        template.labels.push(data.timestamp)
+        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
         template.datasets[0].data.push(data.value.consumer.empty + data.value.consumer.full)
         template.datasets[1].data.push(data.value.producer.empty + data.value.producer.full)
         template.datasets[2].data.push(data.value.transit.empty + data.value.transit.full)
