@@ -116,7 +116,7 @@ def analytics_delivery(id):
     uid = uuid.UUID(id)
     delta_t = datetime.timedelta(days=1)
     factor = 1
-
+    
     if len(request.query_string) > 0:
         if request.query_string.startswith(b'week'):
             delta_t = datetime.timedelta(weeks=1)
@@ -131,7 +131,7 @@ def analytics_delivery(id):
         return_value['id'] = id
         today = datetime.datetime.today()
         for i in range(30):
-            t_i = today - delta_t
+            t_i = today - delta_t - datetime.timedelta(days=i)
             timestamp = time.mktime(t_i.timetuple())*1e3 + t_i.microsecond/1e3
 
             return_value['deliveries'].append({

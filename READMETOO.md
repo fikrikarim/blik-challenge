@@ -149,4 +149,13 @@ timestamp = time.mktime(t_i.timetuple())*1e3 + t_i.microsecond/1e3
 - Somehow I want to make the graph colors more beautiful, I think I'll use the default color from [chart.js examples](http://www.chartjs.org/samples/)
 - Haha the graph for throughput is done, but the timestamp from the API is broken. It's showing dates from year 70s :D
 - Ohh okay nevermind, [I forgot to multiply the timestamp with 1000.](https://stackoverflow.com/a/41635863/5035761)
-
+- Now why the API for deliveries is showing the same timestamp for each value?
+- Okay I just add `- datetime.timedelta(days=i)` on the delivery API. So the `t_i` change from
+```
+t_i = today - delta_t
+```
+- into
+```
+t_i = today - delta_t - datetime.timedelta(days=i)
+```
+- Now the timestamp shows deliveries for each day.
