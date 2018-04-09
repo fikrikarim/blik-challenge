@@ -160,7 +160,7 @@ def analytics_throughput(id):
             min_val = random.randint(50, 99)
 
             date = datetime.datetime.today() - datetime.timedelta(days=throughput)
-            timestamp = date.timestamp()
+            timestamp = date.timestamp() * 1000
 
             return_value['throughput'].append({
                 'timestamp': timestamp,

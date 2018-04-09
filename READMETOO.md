@@ -145,6 +145,8 @@ timestamp = time.mktime(t_i.timetuple())*1e3 + t_i.microsecond/1e3
 - No. I got the better implementation for python 3.3+ from this [stackoverflow's answer](https://stackoverflow.com/a/8778548). Let's also put the python version requirement on the README.md file.
 - Now the throughput API is good. Let's move to the front-end side of the throughput graph.
 
-### 13:16
+### 13:16 - 
 - Somehow I want to make the graph colors more beautiful, I think I'll use the default color from [chart.js examples](http://www.chartjs.org/samples/)
 - Haha the graph for throughput is done, but the timestamp from the API is broken. It's showing dates from year 70s :D
+- Ohh okay nevermind, [I forgot to multiply the timestamp with 1000.](https://stackoverflow.com/a/41635863/5035761)
+
