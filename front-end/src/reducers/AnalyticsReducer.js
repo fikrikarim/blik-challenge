@@ -44,7 +44,7 @@ export default (state = INITIAL_STATE, action) => {
         case ANALYTICS_THROUGHPUT_REQUESTED:
             return { ...state };
         case ANALYTICS_THROUGHPUT_SUCCESSED:
-            return { ...state, throughputs: action.payload.week  };
+            return { ...state, throughputs: action.payload.throughput  };
         case ANALYTICS_THROUGHPUT_FAILED:
             return { ...state, error: action.payload };
         default:

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Line, Bar } from 'react-chartjs-2';
 import { analyticsDelivery, analyticsDistribution, analyticsThroughput } from '../actions';
 import AnalyticsDelivery from './AnalyticsDelivery';
 import AnalyticsDistribution from './AnalyticsDistribution';

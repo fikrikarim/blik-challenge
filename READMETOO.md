@@ -125,5 +125,26 @@ yarn add redux react-redux react-router-dom react-router-redux@next redux-thunk 
 - How to map the current data structure into the graph data structure? We should transform the data within the functional component yea?
 - I want to try to transform the data using a functiont first. And we try to view only the All SLTs first.
 
-### 13:27 - 
+### 13:27 - 13:40
 - We should use moment for displaying the dates from the timestamp.
+- Okay it's finished for Distribution graph. It's easier than I expected :D
+- Now for the other graph, but we should change the backend too for fixing the timestamp.
+
+
+## Mon, 9 Apr 2018
+### 07:52 - 8:31
+- Changing the data structure for other graph. Adding timestamp on throughput backend.
+- It's quite hard to test the backend using postman, because the uuid is changing every server restart. If you want to test the throughput api, you should post to the `/analytics` api first before you can post into the `/analytics/:id/throughput` to get the correct uuid.
+- I don't know why in `/analytics/:id/throughput` the range is `for throughput in range(4, 11)`. Why not `for throughput in range(1, 8)` ?
+- I change the json structure on throughput API from `week` to `throughput` to make it more similar to other API.
+- I know how to substract the current date by one day. But how to convert datetime object into epoch time for timestamp value? Is the current implementation the cleanest?
+```
+timestamp = time.mktime(t_i.timetuple())*1e3 + t_i.microsecond/1e3
+```
+- Okay I think I'll use that implementation
+- No. I got the better implementation for python 3.3+ from this [stackoverflow's answer](https://stackoverflow.com/a/8778548). Let's also put the python version requirement on the README.md file.
+- Now the throughput API is good. Let's move to the front-end side of the throughput graph.
+
+### 13:16
+- Somehow I want to make the graph colors more beautiful, I think I'll use the default color from [chart.js examples](http://www.chartjs.org/samples/)
+- Haha the graph for throughput is done, but the timestamp from the API is broken. It's showing dates from year 70s :D

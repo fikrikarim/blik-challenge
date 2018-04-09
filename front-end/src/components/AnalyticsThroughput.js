@@ -1,33 +1,52 @@
 import React from 'react';
+import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
+
+const template = {
+    labels: [],
+    datasets: [
+        {
+            label: 'Maximum',
+            backgroundColor: 'rgba(255,101,133, 0.8)',
+            borderColor: 'rgba(255,101,133, 1)',
+            fill: false,
+            data: []
+        },
+        {
+            label: 'Average',
+            backgroundColor: 'rgba(61,163,232, 0.8)',
+            borderColor: 'rgba(61,163,232, 1)',
+            fill: false,
+            data: []
+        },
+        {
+            label: 'Minimum',
+            backgroundColor: 'rgba(254,204,96, 0.8)',
+            borderColor: 'rgba(254,204,96, 1)',
+            fill: false,
+            data: []
+        }
+    ]
+};
+
+function transformData(template, arrayOfData) {
+    arrayOfData.forEach(data => {
+        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        template.datasets[0].data.push(data.max)
+        template.datasets[1].data.push(data.avg)
+        template.datasets[2].data.push(data.min)
+    });
+    return template
+}
+
 export default function AnalyticsThroughput(props) {
-    let data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'My First dataset',
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
-            }
-        ]
-    };
+    let data;
+    if (props.data) {
+        data = transformData(template, props.data)
+    } else {
+        data = {}
+    }
 
     return (
         <Line data={data} />

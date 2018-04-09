@@ -8,25 +8,19 @@ const template = {
     datasets: [
         {
             label: 'Consumer',
-            backgroundColor: 'rgba(255,99,132,0.2)',
-            borderColor: 'rgba(255,99,132,1)',
-            borderWidth: 1,
+            backgroundColor: 'rgba(255,101,133, 0.8)',
             stack: '1',
             data: []
         },
         {
             label: 'Producer',
-            backgroundColor: 'rgba(155,49,12,0.4)',
-            borderColor: 'rgba(155,49,12,1)',
-            borderWidth: 1,
+            backgroundColor: 'rgba(61,163,232, 0.8)',
             stack: '1',
             data: []
         },
         {
             label: 'In Transit',
-            backgroundColor: 'rgba(45,149,102,0.4)',
-            borderColor: 'rgba(45,149,102,1)',
-            borderWidth: 1,
+            backgroundColor: 'rgba(254,204,96, 0.8)',
             stack: '1',
             data: []
         }
@@ -48,9 +42,9 @@ export default function AnalyticsDistribution(props) {
     if (props.data) {
         data = transformData(template, props.data)
     } else {
-        data = []
+        data = {}
     }
-    
+
     return (
         <Bar data={data} />
     )
