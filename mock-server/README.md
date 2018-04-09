@@ -2,6 +2,11 @@
 
 ## Installation
 
+Python version:
+```
+3.6.3
+```
+
 Install pipenv:
 
 ```bash

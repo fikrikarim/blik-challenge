@@ -148,17 +148,22 @@ def analytics_throughput(id):
     generate some process throughput data.
     """
     return_value = {
-        'week': []
+        'throughput': []
     }
     uid = uuid.UUID(id)
+
     if id_is_valid(uid):
         return_value['id'] = id
 
-        for week in range(4, 11):
+        for throughput in range(4, 11):
             max_val = random.randint(100, 250)
             min_val = random.randint(50, 99)
 
-            return_value['week'].append({
+            date = datetime.datetime.today() - datetime.timedelta(days=throughput)
+            timestamp = date.timestamp()
+
+            return_value['throughput'].append({
+                'timestamp': timestamp,
                 'max': max_val,
                 'min': min_val,
                 'avg': (max_val + min_val) / 2
