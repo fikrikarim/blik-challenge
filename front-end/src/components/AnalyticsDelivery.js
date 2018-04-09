@@ -1,19 +1,35 @@
 import React from 'react';
+import moment from 'moment';
 import { Line } from 'react-chartjs-2';
 
+const template = {
+    labels: [],
+    datasets: [
+        {
+            label: 'Deliveries',
+            backgroundColor: 'rgba(255,101,133, 0.6)',
+            borderColor: 'rgba(255,101,133, 0.8)',
+            fill: false,
+            data: []
+        }
+    ]
+};
+
+function transformData(template, arrayOfData) {
+    arrayOfData.forEach(data => {
+        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        template.datasets[0].data.push(data.value)
+    });
+    return template
+}
+
 export default function AnalyticsDelivery(props) {
-    let data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'My First dataset',
-                fill: false,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                data: [65, 59, 80, 81, 56, 55, 40]
-            }
-        ]
-    };
+    let data;
+    if (props.data) {
+        data = transformData(template, props.data)
+    } else {
+        data = {}
+    }
 
     return (
         <Line data={data} />
