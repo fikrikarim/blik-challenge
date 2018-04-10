@@ -1,5 +1,7 @@
 All time and date are in local time (UTC + 7)
 
+Total time spent: 16 hours 23 minutes (calculated using excel)
+
 ## Sat, 31 Mar 2018
 ### 17:32 - 18:03
 - Create the blik-challenge folder, initialize git, and create the repository on [gitlab](https://gitlab.com/fikrikarim/blik-challenge)
@@ -219,6 +221,27 @@ function transformData(template, arrayOfData={}) {
 ### 17:35 - 18:08
 - Continue creating the layout. I got a little problem how to put the search bar in the middle of the MenuBar
 
-### 18:34 - 
+### 18:34 - 19:00
 - I think we can use flexbox for styling the graph size and location. Let's try that.
-- 
+- Okayy, by using this website, I can create the layout to match the mockup.
+
+### 20:19 - 21:34
+- Now the app is finished, let's deploy it on heroku. I choose heroku because I'm familiar with it, and I'd deployed many Ruby on Rails apps on heroku. Hope heroku can handle python and flask well.
+- I also have to create separate repository for the back-end files to use the heroku git CLI to deploy the apps.
+- Okay I got problem "No web processes running" on heroku logs.
+- The problem is I haven't set up the Procfile yet. Adding Procfile with line `web: python server.py` solves the problem. And I also have to set the PORT and the host too. So the backend become like this:
+```python
+port = int(os.environ.get('PORT', 33507)) 
+app.run(host='0.0.0.0', port=port)
+```
+- Now the backend is running at https://blik-challenge-back-end.herokuapp.com/
+- Now we should host the front-end side. We can do with express and deploy it to heroku again, but I think I'll use Firebase hosting as I have some experience with it from previous projects.
+- For the hosting setting I use the firebase.json from previous project. So we can run `yarn build` then run `firebase deploy` to deploy the files. We also manually set the back-end url to https://blik-challenge-back-end.herokuapp.com/ because firebase doesn't have environment configuration.
+- Yayyyy the app is working at https://blik-challenge.firebaseapp.com/ and can communicate to the backend server.
+- There's still things to do. But I already spent quite a lot of hours on this projects. I think I'm satisfied with the current status.
+- Next TODO:
+    - Add the search form on the menu bar to match the mockup
+    - Create more beautiful table on `/analytics` and on homepage.
+    - Use styling from material-ui-next for the dropdown, the radio button, and for the typography.
+    - Add testing suite using Jest.
+- I really like to demonstrate the ability to create testing suite. But I'm afraid I don't have any more time to do that :(
