@@ -145,7 +145,7 @@ timestamp = time.mktime(t_i.timetuple())*1e3 + t_i.microsecond/1e3
 - No. I got the better implementation for python 3.3+ from this [stackoverflow's answer](https://stackoverflow.com/a/8778548). Let's also put the python version requirement on the README.md file.
 - Now the throughput API is good. Let's move to the front-end side of the throughput graph.
 
-### 13:16 - 
+### 13:16 - 14:17
 - Somehow I want to make the graph colors more beautiful, I think I'll use the default color from [chart.js examples](http://www.chartjs.org/samples/)
 - Haha the graph for throughput is done, but the timestamp from the API is broken. It's showing dates from year 70s :D
 - Ohh okay nevermind, [I forgot to multiply the timestamp with 1000.](https://stackoverflow.com/a/41635863/5035761)
@@ -159,3 +159,37 @@ t_i = today - delta_t
 t_i = today - delta_t - datetime.timedelta(days=i)
 ```
 - Now the timestamp shows deliveries for each day.
+- The delivery graph now is done.
+- Current TODOs:
+    - Option for week or month for deliveries
+    - Option for choosing Alle SLT, Leergut SLT, or Vollgut SLT for throughput
+    - Create average length of stay in zone graph? We don't have the API yet too!
+    - Map for showing the location of the zone?
+    - Creating the nice layout to match the mockup
+    
+## Tue, 10 Apr 2018
+### 11:20 - 
+- Why the x axis on the graph is reversed? The earliest data is on the left while the oldest is on the right. Should we fix this on the backend side? or on the front-end side? I think I'll do it on the front-end side because I don't want to really mess the code from the backend.
+- Whoa why the graph is mirrorred on y-axis on the middle? And it's only happened sometimes. What happen?
+- I think I know the answer, my current transformData function use push() method, which isn't not pure function, because it modifies a current object. Let's try to make the function a pure function.
+- Okay, I learn something new today. So both the spread operator `{ ...oldObject }`, and assign `Object.assign({}, oldObject)` operator only do shallow copy.
+- So when the function is
+```js
+function transformData(template, arrayOfData={}) {
+    let templateCopy = { ...template }
+
+    arrayOfData.forEach(data => {
+        templateCopy.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        templateCopy.datasets[0].data.push(data.value.consumer.empty + data.value.consumer.full)
+        templateCopy.datasets[1].data.push(data.value.producer.empty + data.value.producer.full)
+        templateCopy.datasets[2].data.push(data.value.transit.empty + data.value.transit.full)
+    });
+    return templateCopy
+}
+```
+- The push method will push into the template object too, not only on templateCopy, because spread operator only do shallow copy and it reference to the template object.
+- Now I have some choices: use method other than `push`, that won't modify the current object, or we use some method that will do a deep copy for us.
+- I think I'll take the latter. Based on [this](https://stackoverflow.com/a/38359898/5035761) and [this](https://scotch.io/bar-talk/copying-objects-in-javascript) articles, we can use `JSON.parse(JSON.stringify(object))` to do deep copy. But this only works as long as the contained objects don't have dates, functions or other values that are impermissible in JSON. This is okay for our case.
+- Now our graphs are working as expected.
+
+

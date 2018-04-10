@@ -19,6 +19,7 @@ class AnalyticsDetails extends Component {
 
     render() {
         const { deliveries, distributions, throughputs } = this.props
+        
         return (
             <div>
                 <h1>Analytic Details Page</h1>

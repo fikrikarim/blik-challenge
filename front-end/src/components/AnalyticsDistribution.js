@@ -27,20 +27,23 @@ const template = {
     ]
 };
 
-function transformData(template, arrayOfData) {
+function transformData(template, arrayOfData = {}) {
+    let templateCopy = JSON.parse(JSON.stringify(template));
+
     arrayOfData.forEach(data => {
-        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
-        template.datasets[0].data.push(data.value.consumer.empty + data.value.consumer.full)
-        template.datasets[1].data.push(data.value.producer.empty + data.value.producer.full)
-        template.datasets[2].data.push(data.value.transit.empty + data.value.transit.full)
+        templateCopy.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        templateCopy.datasets[0].data.push(data.value.consumer.empty + data.value.consumer.full)
+        templateCopy.datasets[1].data.push(data.value.producer.empty + data.value.producer.full)
+        templateCopy.datasets[2].data.push(data.value.transit.empty + data.value.transit.full)
     });
-    return template
+    return templateCopy
 }
 
 export default function AnalyticsDistribution(props) {
-    let data;
+    let data = {};
+
     if (props.data) {
-        data = transformData(template, props.data)
+        data = transformData(template, props.data.reverse())
     } else {
         data = {}
     }

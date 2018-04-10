@@ -31,19 +31,21 @@ const template = {
 };
 
 function transformData(template, arrayOfData) {
+    let templateCopy = JSON.parse(JSON.stringify(template));
+
     arrayOfData.forEach(data => {
-        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
-        template.datasets[0].data.push(data.max)
-        template.datasets[1].data.push(data.avg)
-        template.datasets[2].data.push(data.min)
+        templateCopy.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        templateCopy.datasets[0].data.push(data.max)
+        templateCopy.datasets[1].data.push(data.avg)
+        templateCopy.datasets[2].data.push(data.min)
     });
-    return template
+    return templateCopy
 }
 
 export default function AnalyticsThroughput(props) {
     let data;
     if (props.data) {
-        data = transformData(template, props.data)
+        data = transformData(template, props.data.reverse())
     } else {
         data = {}
     }

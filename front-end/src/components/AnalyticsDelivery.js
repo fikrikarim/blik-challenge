@@ -16,17 +16,19 @@ const template = {
 };
 
 function transformData(template, arrayOfData) {
+    let templateCopy = JSON.parse(JSON.stringify(template));
+
     arrayOfData.forEach(data => {
-        template.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
-        template.datasets[0].data.push(data.value)
+        templateCopy.labels.push(moment(data.timestamp).format("ddd, D MMM YY"))
+        templateCopy.datasets[0].data.push(data.value)
     });
-    return template
+    return templateCopy
 }
 
 export default function AnalyticsDelivery(props) {
     let data;
     if (props.data) {
-        data = transformData(template, props.data)
+        data = transformData(template, props.data.reverse())
     } else {
         data = {}
     }
