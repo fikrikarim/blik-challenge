@@ -243,5 +243,6 @@ app.run(host='0.0.0.0', port=port)
     - Add the search form on the menu bar to match the mockup
     - Create more beautiful table on `/analytics` and on homepage.
     - Use styling from material-ui-next for the dropdown, the radio button, and for the typography.
+    - Add loading animation when the data for the graph is still fetched.
     - Add testing suite using Jest.
 - I really like to demonstrate the ability to create testing suite. But I'm afraid I don't have any more time to do that :(
