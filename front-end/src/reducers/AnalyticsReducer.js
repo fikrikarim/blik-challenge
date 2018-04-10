@@ -26,6 +26,7 @@ const INITIAL_STATE = {
     distributions: '',
     throughputs: '',
     zones: '',
+    numbers: '',
     deliveryOption: 'week',
     distributionOption: 'alle',
     zoneOption: '',
@@ -61,7 +62,7 @@ export default (state = INITIAL_STATE, action) => {
         case ANALYTICS_ZONES_REQUESTED:
             return { ...state };
         case ANALYTICS_ZONES_SUCCESSED:
-            return { ...state, zones: action.payload.zones, zoneOption: action.payload.zones[0].name, zoneLocation: action.payload.location };
+            return { ...state, zones: action.payload.zones, zoneOption: action.payload.zones[0].name, zoneLocation: action.payload.location, numbers: action.payload.numbers };
         case ANALYTICS_ZONES_FAILED:
             return { ...state, error: action.payload };
         case DELIVERY_OPTION_CHANGE:

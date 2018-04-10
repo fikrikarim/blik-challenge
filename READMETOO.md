@@ -219,3 +219,6 @@ function transformData(template, arrayOfData={}) {
 ### 17:35 - 18:08
 - Continue creating the layout. I got a little problem how to put the search bar in the middle of the MenuBar
 
+### 18:34 - 
+- I think we can use flexbox for styling the graph size and location. Let's try that.
+- 

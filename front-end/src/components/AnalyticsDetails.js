@@ -52,40 +52,52 @@ class AnalyticsDetails extends Component {
     }
 
     render() {
-        const { deliveries, distributions, throughputs, distributionOption, zones, zoneOption, zoneLocation } = this.props
+        const { deliveries, distributions, throughputs, distributionOption, zones, zoneOption, zoneLocation, numbers } = this.props
         
         return (
             <div>
-                <h1>Analytic Details Page</h1>
-                <p>Gesamtzahl SLTs im Kreislauf: </p>
-                <p>Number of deliveries per: </p>
-                <select onChange={this.handleDeliveryOption.bind(this)} value={this.props.deliveryOption}>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                </select>
-                <AnalyticsDelivery data={deliveries} />
-                <p>Distribution of SLTs in the circulation: </p>
-                <form onChange={this.handleDistributionOption.bind(this)}>
-                    <input type="radio" name="distributionOption" value="alle" defaultChecked={distributionOption === "alle" ? "checked" : ""}/> Alle
-                    <input type="radio" name="distributionOption" value="leergut" defaultChecked={distributionOption === "leergut" ? "checked" : ""}/> Leergut
-                    <input type="radio" name="distributionOption" value="vollgut" defaultChecked={distributionOption === "vollgut" ? "checked" : ""}/> Vollgut
-                </form>
-                <AnalyticsDistribution data={distributions} distributionOption={distributionOption} />
-                <p>Process runtime: </p>
-                <AnalyticsThroughput data={throughputs} />
-                <p>Average length of stay in zone: </p>
-                <select onChange={this.handleZoneOption.bind(this)} value={this.props.zoneOption}>
-                    {this.renderZoneOption()}
-                </select>
-                <AnalyticsZone data={zones} zoneOption={zoneOption}/>
-
-                <div style={{ height: '100vh', width: '100%' }}>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{ key: 'AIzaSyClKPlFtNG0CSfx20Rug1MXpDxctm22aZo' }}
-                        center={zoneLocation}
-                        zoom={11}
-                    >
-                    </GoogleMapReact>
+                <div style={{ display: 'flex', alignContent: 'stretch', alignItems: 'center' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <p>Gesamtzahl SLTs im Kreislauf: {numbers}</p>
+                        <p>Number of deliveries per: </p>
+                        <select onChange={this.handleDeliveryOption.bind(this)} value={this.props.deliveryOption}>
+                            <option value="week">Week</option>
+                            <option value="month">Month</option>
+                        </select>
+                        <AnalyticsDelivery data={deliveries} />
+                    </div>
+                    <div style={{ flexGrow: 1 }}>
+                        <p>Process runtime: </p>
+                        <AnalyticsThroughput data={throughputs} />
+                    </div>
+                </div>
+                <div style={{ display: 'flex', alignContent: 'stretch', alignItems: 'center' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <p>Distribution of SLTs in the circulation: </p>
+                        <form onChange={this.handleDistributionOption.bind(this)}>
+                            <input type="radio" name="distributionOption" value="alle" defaultChecked={distributionOption === "alle" ? "checked" : ""} /> Alle
+                                <input type="radio" name="distributionOption" value="leergut" defaultChecked={distributionOption === "leergut" ? "checked" : ""} /> Leergut
+                                <input type="radio" name="distributionOption" value="vollgut" defaultChecked={distributionOption === "vollgut" ? "checked" : ""} /> Vollgut
+                            </form>
+                        <AnalyticsDistribution data={distributions} distributionOption={distributionOption} />
+                    </div>
+                </div>
+                <div style={{ display: 'flex', alignContent: 'stretch', alignItems: 'center' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <p>Average length of stay in zone: </p>
+                        <select onChange={this.handleZoneOption.bind(this)} value={this.props.zoneOption}>
+                            {this.renderZoneOption()}
+                        </select>
+                        <AnalyticsZone data={zones} zoneOption={zoneOption}/>
+                    </div>
+                    <div style={{ height: '20vh', width: '40%' }}>
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key: 'AIzaSyClKPlFtNG0CSfx20Rug1MXpDxctm22aZo' }}
+                            center={zoneLocation}
+                            zoom={11}
+                        >
+                        </GoogleMapReact>
+                    </div>
                 </div>
             </div>
         );
@@ -101,6 +113,7 @@ const mapStateToProps = state => ({
     distributionOption: state.analytics.distributionOption,
     zoneOption: state.analytics.zoneOption,
     zoneLocation: state.analytics.zoneLocation,
+    numbers: state.analytics.numbers,
 });
 
 export default

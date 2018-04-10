@@ -47,6 +47,7 @@ def analytics(id):
     if id_is_valid(uid):
         return_value = {
             'id': id,
+            'numbers': random.randint(70, 150),
             'name': 'Analytics for Process {}'.format(IDS.index(uid) + 1),
             'location': {
                 'lat': round(random.uniform(51.477848, 51.47790), 6),

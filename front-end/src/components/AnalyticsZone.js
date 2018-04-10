@@ -6,7 +6,7 @@ const template = {
     labels: [],
     datasets: [
         {
-            label: 'Producer',
+            label: 'Length of stay',
             backgroundColor: 'rgba(61,163,232, 0.8)',
             borderColor: 'rgba(61,163,232, 1)',
             fill: false,
