@@ -50,7 +50,7 @@ def analytics(id):
             'name': 'Analytics for Process {}'.format(IDS.index(uid) + 1),
             'location': {
                 'lat': round(random.uniform(51.477848, 51.47790), 6),
-                'lon': round(random.uniform(-0.0001, 0.0001), 6)
+                'lng': round(random.uniform(-0.0001, 0.0001), 6)
             },
             'zones': []
         }

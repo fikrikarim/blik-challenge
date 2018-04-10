@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import GoogleMapReact from 'google-map-react';
 import { 
     analyticsDelivery, 
     analyticsDistribution, 
@@ -51,7 +52,7 @@ class AnalyticsDetails extends Component {
     }
 
     render() {
-        const { deliveries, distributions, throughputs, distributionOption, zones, zoneOption } = this.props
+        const { deliveries, distributions, throughputs, distributionOption, zones, zoneOption, zoneLocation } = this.props
         
         return (
             <div>
@@ -77,6 +78,15 @@ class AnalyticsDetails extends Component {
                     {this.renderZoneOption()}
                 </select>
                 <AnalyticsZone data={zones} zoneOption={zoneOption}/>
+
+                <div style={{ height: '100vh', width: '100%' }}>
+                    <GoogleMapReact
+                        bootstrapURLKeys={{ key: 'AIzaSyClKPlFtNG0CSfx20Rug1MXpDxctm22aZo' }}
+                        center={zoneLocation}
+                        zoom={11}
+                    >
+                    </GoogleMapReact>
+                </div>
             </div>
         );
     }
@@ -90,6 +100,7 @@ const mapStateToProps = state => ({
     deliveryOption: state.analytics.deliveryOption,
     distributionOption: state.analytics.distributionOption,
     zoneOption: state.analytics.zoneOption,
+    zoneLocation: state.analytics.zoneLocation,
 });
 
 export default

@@ -205,9 +205,12 @@ function transformData(template, arrayOfData={}) {
 - We can add timestamp, and length of stay for each zone on the `/analytics/:id` API.
 - Okay that's become easier because we can just copy the previous graph.
 
-### 16:32 - 16:41
+### 16:32 
 - Finish the option for lengthOfStay graph.
 - For a moment I stumbled on how to find an object which contain the value equal to the option zone. But I found the method to solve this using the [find method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
 - Now our remaining TODO is
     - Map for showing the location of the zone?
     - Creating the nice layout to match the mockup
+- Which library to use for showing map in React? I think I'll try to use [this library](https://github.com/google-map-react/google-map-react) first.
+- Okay I got it working using the [google-map-react library](https://github.com/google-map-react/google-map-react)
+- Hehe.. the default object for location for Google API is `{ lat: , lng: }`, but the `analytics/:id` gives `{ lat: , lon: }`. I think I'll change the backend to use Google API format.
