@@ -202,3 +202,4 @@ function transformData(template, arrayOfData={}) {
 ### 14:34 -
 - So we should add graph for average length of stay in zone. Can we use existing endpoint on `/analytics/:id`? Because it already contain some informations for zones but doesn't have the value for each day yet.
 - We should create a component to handle the graph, and the action creator to request the API too.
+- We can add timestamp, and length of stay for each zone on the `/analytics/:id` API.

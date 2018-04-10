@@ -57,9 +57,20 @@ def analytics(id):
 
         # add a random number of involved zones
         for i in range(random.randint(8, 12)):
+            lengthOfStay = []
+
+            for day in range(7):
+                date = datetime.datetime.today() - datetime.timedelta(days=day)
+                timestamp = date.timestamp() * 1000
+                lengthOfStay.append({
+                    'timestamp': timestamp,
+                    'value': random.randint(10, 20)
+                })
+
             return_value['zones'].append({
                 'name': 'Zone #{}'.format(i),
-                'description': 'Some description for Zone #{}'.format(i)
+                'description': 'Some description for Zone #{}'.format(i),
+                'lengthOfStay': lengthOfStay
             })
 
     return jsonify(return_value)
@@ -116,7 +127,7 @@ def analytics_delivery(id):
     uid = uuid.UUID(id)
     delta_t = datetime.timedelta(days=1)
     factor = 1
-    
+
     if len(request.query_string) > 0:
         if request.query_string.startswith(b'week'):
             delta_t = datetime.timedelta(weeks=1)
