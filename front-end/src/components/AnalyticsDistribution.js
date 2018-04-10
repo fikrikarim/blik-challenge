@@ -65,7 +65,7 @@ export default function AnalyticsDistribution(props) {
     let data = {};
 
     if (props.data) {
-        data = transformData(template, props.data.reverse(), props.distributionOption)
+        data = transformData(template, [].concat(props.data).reverse(), props.distributionOption)
     } else {
         data = {}
     }

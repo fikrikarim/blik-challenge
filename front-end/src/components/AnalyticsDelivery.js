@@ -28,7 +28,7 @@ function transformData(template, arrayOfData) {
 export default function AnalyticsDelivery(props) {
     let data;
     if (props.data) {
-        data = transformData(template, props.data.reverse())
+        data = transformData(template, [].concat(props.data).reverse())
     } else {
         data = {}
     }
