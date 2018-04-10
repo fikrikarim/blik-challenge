@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/icons": "^1.0.0-beta.42",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "google-map-react": "^0.34.0",
     "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.41",
     "moment": "^2.22.0",
     "react": "^16.3.0",
     "react-chartjs-2": "^2.7.0",
