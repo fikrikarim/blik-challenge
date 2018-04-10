@@ -16,7 +16,8 @@ import {
     ANALYTICS_ZONES_SUCCESSED,
     ANALYTICS_ZONES_FAILED,
     DELIVERY_OPTION_CHANGE,
-    DISTRIBUTION_OPTION_CHANGE
+    DISTRIBUTION_OPTION_CHANGE,
+    ZONE_OPTION_CHANGE
 } from './types';
 import { apiUrl } from '../config'
 const url = apiUrl;
@@ -101,6 +102,13 @@ export const deliveryOptionChanged = (value) => {
 export const distributionOptionChanged = (value) => {
     return {
         type: DISTRIBUTION_OPTION_CHANGE,
+        payload: value
+    };
+};
+
+export const zoneOptionChanged = (value) => {
+    return {
+        type: ZONE_OPTION_CHANGE,
         payload: value
     };
 };

@@ -6,7 +6,8 @@ import {
     analyticsThroughput,
     analyticsZone,
     deliveryOptionChanged, 
-    distributionOptionChanged 
+    distributionOptionChanged,
+    zoneOptionChanged
 } from '../actions';
 import AnalyticsDelivery from './AnalyticsDelivery';
 import AnalyticsDistribution from './AnalyticsDistribution';
@@ -26,6 +27,16 @@ class AnalyticsDetails extends Component {
         this.props.analyticsZone(this.analyticsId)
     }
 
+    renderZoneOption(){
+        const zones = this.props.zones
+
+        if (zones) {
+            return zones.map(zone => (
+                <option value={zone.name} key={zone.name}>{zone.name}</option>
+            ))
+        }
+    }
+
     handleDeliveryOption(e) {
         this.props.deliveryOptionChanged(e.target.value)
         this.props.analyticsDelivery(this.analyticsId, e.target.value)
@@ -35,8 +46,12 @@ class AnalyticsDetails extends Component {
         this.props.distributionOptionChanged(e.target.value)
     }
 
+    handleZoneOption(e) {
+        this.props.zoneOptionChanged(e.target.value)
+    }
+
     render() {
-        const { deliveries, distributions, throughputs, distributionOption } = this.props
+        const { deliveries, distributions, throughputs, distributionOption, zones, zoneOption } = this.props
         
         return (
             <div>
@@ -57,7 +72,11 @@ class AnalyticsDetails extends Component {
                 <AnalyticsDistribution data={distributions} distributionOption={distributionOption} />
                 <p>Process runtime: </p>
                 <AnalyticsThroughput data={throughputs} />
-                <AnalyticsZone data={{}} />
+                <p>Average length of stay in zone: </p>
+                <select onChange={this.handleZoneOption.bind(this)} value={this.props.zoneOption}>
+                    {this.renderZoneOption()}
+                </select>
+                <AnalyticsZone data={zones} zoneOption={zoneOption}/>
             </div>
         );
     }
@@ -67,8 +86,10 @@ const mapStateToProps = state => ({
     deliveries: state.analytics.deliveries,
     distributions: state.analytics.distributions,
     throughputs: state.analytics.throughputs,
+    zones: state.analytics.zones,
     deliveryOption: state.analytics.deliveryOption,
     distributionOption: state.analytics.distributionOption,
+    zoneOption: state.analytics.zoneOption,
 });
 
 export default
@@ -80,6 +101,7 @@ export default
             analyticsThroughput,
             analyticsZone,
             deliveryOptionChanged,
-            distributionOptionChanged
+            distributionOptionChanged,
+            zoneOptionChanged
         }
     )(AnalyticsDetails);

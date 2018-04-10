@@ -15,7 +15,8 @@ import {
     ANALYTICS_ZONES_SUCCESSED,
     ANALYTICS_ZONES_FAILED,
     DELIVERY_OPTION_CHANGE,
-    DISTRIBUTION_OPTION_CHANGE
+    DISTRIBUTION_OPTION_CHANGE,
+    ZONE_OPTION_CHANGE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -24,8 +25,10 @@ const INITIAL_STATE = {
     deliveries: '',
     distributions: '',
     throughputs: '',
+    zones: '',
     deliveryOption: 'week',
-    distributionOption: 'alle'
+    distributionOption: 'alle',
+    zoneOption: 'week'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -57,13 +60,15 @@ export default (state = INITIAL_STATE, action) => {
         case ANALYTICS_ZONES_REQUESTED:
             return { ...state };
         case ANALYTICS_ZONES_SUCCESSED:
-            return { ...state, zones: action.payload.zones  };
+            return { ...state, zones: action.payload.zones, zoneOption: action.payload.zones[0].name };
         case ANALYTICS_ZONES_FAILED:
             return { ...state, error: action.payload };
         case DELIVERY_OPTION_CHANGE:
             return { ...state, deliveryOption: action.payload };
         case DISTRIBUTION_OPTION_CHANGE:
             return { ...state, distributionOption: action.payload };
+        case ZONE_OPTION_CHANGE:
+            return { ...state, zoneOption: action.payload };
         default:
             return state;
     }

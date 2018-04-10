@@ -199,7 +199,15 @@ function transformData(template, arrayOfData={}) {
 - Okay now it's done. But graph is always reversed when we click the button because we call `.reverse()` when rendering the graph, and `reverse()` method modify the array being called. We should move the reverse method into the action creator or on the reducer.
 - Whoa I think I just change the method from `props.data.reverse()` to `[].concat(props.data).reverse()` so the props.data doesn't change.
 
-### 14:34 -
+### 14:34 - 15:40
 - So we should add graph for average length of stay in zone. Can we use existing endpoint on `/analytics/:id`? Because it already contain some informations for zones but doesn't have the value for each day yet.
 - We should create a component to handle the graph, and the action creator to request the API too.
 - We can add timestamp, and length of stay for each zone on the `/analytics/:id` API.
+- Okay that's become easier because we can just copy the previous graph.
+
+### 16:32 - 16:41
+- Finish the option for lengthOfStay graph.
+- For a moment I stumbled on how to find an object which contain the value equal to the option zone. But I found the method to solve this using the [find method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+- Now our remaining TODO is
+    - Map for showing the location of the zone?
+    - Creating the nice layout to match the mockup
