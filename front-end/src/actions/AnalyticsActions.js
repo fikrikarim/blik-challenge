@@ -12,6 +12,9 @@ import {
     ANALYTICS_THROUGHPUT_REQUESTED,
     ANALYTICS_THROUGHPUT_SUCCESSED,
     ANALYTICS_THROUGHPUT_FAILED,
+    ANALYTICS_ZONES_REQUESTED,
+    ANALYTICS_ZONES_SUCCESSED,
+    ANALYTICS_ZONES_FAILED,
     DELIVERY_OPTION_CHANGE,
     DISTRIBUTION_OPTION_CHANGE
 } from './types';
@@ -70,6 +73,20 @@ export const analyticsThroughput = (id) => {
             })
             .catch(function (error) {
                 dispatch({ type: ANALYTICS_THROUGHPUT_FAILED, payload: error });
+            });
+    };
+};
+
+export const analyticsZone = (id) => {
+    return (dispatch) => {
+        dispatch({ type: ANALYTICS_ZONES_REQUESTED });
+
+        axios.get(`${url}/analytics/${id}`)
+            .then(function (response) {
+                dispatch({ type: ANALYTICS_ZONES_SUCCESSED, payload: response.data });
+            })
+            .catch(function (error) {
+                dispatch({ type: ANALYTICS_ZONES_FAILED, payload: error });
             });
     };
 };

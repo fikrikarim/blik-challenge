@@ -11,6 +11,9 @@ import {
     ANALYTICS_THROUGHPUT_REQUESTED,
     ANALYTICS_THROUGHPUT_SUCCESSED,
     ANALYTICS_THROUGHPUT_FAILED,
+    ANALYTICS_ZONES_REQUESTED,
+    ANALYTICS_ZONES_SUCCESSED,
+    ANALYTICS_ZONES_FAILED,
     DELIVERY_OPTION_CHANGE,
     DISTRIBUTION_OPTION_CHANGE
 } from '../actions/types';
@@ -50,6 +53,12 @@ export default (state = INITIAL_STATE, action) => {
         case ANALYTICS_THROUGHPUT_SUCCESSED:
             return { ...state, throughputs: action.payload.throughput  };
         case ANALYTICS_THROUGHPUT_FAILED:
+            return { ...state, error: action.payload };
+        case ANALYTICS_ZONES_REQUESTED:
+            return { ...state };
+        case ANALYTICS_ZONES_SUCCESSED:
+            return { ...state, zones: action.payload.zones  };
+        case ANALYTICS_ZONES_FAILED:
             return { ...state, error: action.payload };
         case DELIVERY_OPTION_CHANGE:
             return { ...state, deliveryOption: action.payload };

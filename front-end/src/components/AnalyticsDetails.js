@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import { 
     analyticsDelivery, 
     analyticsDistribution, 
-    analyticsThroughput, 
+    analyticsThroughput,
+    analyticsZone,
     deliveryOptionChanged, 
     distributionOptionChanged 
 } from '../actions';
 import AnalyticsDelivery from './AnalyticsDelivery';
 import AnalyticsDistribution from './AnalyticsDistribution';
 import AnalyticsThroughput from './AnalyticsThroughput';
+import AnalyticsZone from './AnalyticsZone';
 
 class AnalyticsDetails extends Component {
     constructor(props) {
@@ -21,6 +23,7 @@ class AnalyticsDetails extends Component {
         this.props.analyticsDelivery(this.analyticsId, this.props.deliveryOption)
         this.props.analyticsDistribution(this.analyticsId)
         this.props.analyticsThroughput(this.analyticsId)
+        this.props.analyticsZone(this.analyticsId)
     }
 
     handleDeliveryOption(e) {
@@ -54,6 +57,7 @@ class AnalyticsDetails extends Component {
                 <AnalyticsDistribution data={distributions} distributionOption={distributionOption} />
                 <p>Process runtime: </p>
                 <AnalyticsThroughput data={throughputs} />
+                <AnalyticsZone data={{}} />
             </div>
         );
     }
@@ -74,6 +78,7 @@ export default
             analyticsDelivery,
             analyticsDistribution,
             analyticsThroughput,
+            analyticsZone,
             deliveryOptionChanged,
             distributionOptionChanged
         }

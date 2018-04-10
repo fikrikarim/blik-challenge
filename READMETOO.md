@@ -192,9 +192,13 @@ function transformData(template, arrayOfData={}) {
 - I think I'll take the latter. Based on [this](https://stackoverflow.com/a/38359898/5035761) and [this](https://scotch.io/bar-talk/copying-objects-in-javascript) articles, we can use `JSON.parse(JSON.stringify(object))` to do deep copy. But this only works as long as the contained objects don't have dates, functions or other values that are impermissible in JSON. This is okay for our case.
 - Now our graphs are working as expected.
 
-### 11:46 -
+### 11:46 - 12:56
 - Now working on our next TODO: Option for week or month for deliveries
 - Yay it's working. Note that I think the API backend for `/delivery` is not showing the right data for per week and per month. But I think that's out of scope of this challenge. I don't really know the real backend structure of the API.
 - Now working on our next TODO: Option for choosing Alle SLT, Leergut SLT, or Vollgut SLT for throughput. It should be similar to the previous TODO.
 - Okay now it's done. But graph is always reversed when we click the button because we call `.reverse()` when rendering the graph, and `reverse()` method modify the array being called. We should move the reverse method into the action creator or on the reducer.
 - Whoa I think I just change the method from `props.data.reverse()` to `[].concat(props.data).reverse()` so the props.data doesn't change.
+
+### 14:34 -
+- So we should add graph for average length of stay in zone. Can we use existing endpoint on `/analytics/:id`? Because it already contain some informations for zones but doesn't have the value for each day yet.
+- We should create a component to handle the graph, and the action creator to request the API too.
