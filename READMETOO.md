@@ -168,7 +168,7 @@ t_i = today - delta_t - datetime.timedelta(days=i)
     - Creating the nice layout to match the mockup
     
 ## Tue, 10 Apr 2018
-### 11:20 - 
+### 11:11 - 11:45
 - Why the x axis on the graph is reversed? The earliest data is on the left while the oldest is on the right. Should we fix this on the backend side? or on the front-end side? I think I'll do it on the front-end side because I don't want to really mess the code from the backend.
 - Whoa why the graph is mirrorred on y-axis on the middle? And it's only happened sometimes. What happen?
 - I think I know the answer, my current transformData function use push() method, which isn't not pure function, because it modifies a current object. Let's try to make the function a pure function.
@@ -192,4 +192,7 @@ function transformData(template, arrayOfData={}) {
 - I think I'll take the latter. Based on [this](https://stackoverflow.com/a/38359898/5035761) and [this](https://scotch.io/bar-talk/copying-objects-in-javascript) articles, we can use `JSON.parse(JSON.stringify(object))` to do deep copy. But this only works as long as the contained objects don't have dates, functions or other values that are impermissible in JSON. This is okay for our case.
 - Now our graphs are working as expected.
 
-
+### 11:46 -
+- Now working on our next TODO: Option for week or month for deliveries
+- Yay it's working. Note that I think the API backend for `/delivery` is not showing the right data for per week and per month. But I think that's out of scope of this challenge. I don't really know the real backend structure of the API.
+- Now working on our next TODO: Option for choosing Alle SLT, Leergut SLT, or Vollgut SLT for throughput. It should be similar to the previous TODO.

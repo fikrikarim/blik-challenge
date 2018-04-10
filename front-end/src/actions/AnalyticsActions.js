@@ -12,6 +12,7 @@ import {
     ANALYTICS_THROUGHPUT_REQUESTED,
     ANALYTICS_THROUGHPUT_SUCCESSED,
     ANALYTICS_THROUGHPUT_FAILED,
+    DELIVERY_OPTION_CHANGE,
 } from './types';
 import { apiUrl } from '../config'
 const url = apiUrl;
@@ -30,11 +31,11 @@ export const analyticsList = () => {
     };
 };
 
-export const analyticsDelivery = (id) => {
+export const analyticsDelivery = (id, deliveryOption) => {
     return (dispatch) => {
         dispatch({ type: ANALYTICS_DELIVERY_REQUESTED });
 
-        axios.get(`${url}/analytics/${id}/delivery?week`)
+        axios.get(`${url}/analytics/${id}/delivery?${deliveryOption}`)
             .then(function (response) {
                 dispatch({ type: ANALYTICS_DELIVERY_SUCCESSED, payload: response.data });
             })
@@ -69,5 +70,12 @@ export const analyticsThroughput = (id) => {
             .catch(function (error) {
                 dispatch({ type: ANALYTICS_THROUGHPUT_FAILED, payload: error });
             });
+    };
+};
+
+export const deliveryOptionChanged = (value) => {
+    return {
+        type: DELIVERY_OPTION_CHANGE,
+        payload: value
     };
 };
