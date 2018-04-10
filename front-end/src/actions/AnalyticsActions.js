@@ -13,6 +13,7 @@ import {
     ANALYTICS_THROUGHPUT_SUCCESSED,
     ANALYTICS_THROUGHPUT_FAILED,
     DELIVERY_OPTION_CHANGE,
+    DISTRIBUTION_OPTION_CHANGE
 } from './types';
 import { apiUrl } from '../config'
 const url = apiUrl;
@@ -76,6 +77,13 @@ export const analyticsThroughput = (id) => {
 export const deliveryOptionChanged = (value) => {
     return {
         type: DELIVERY_OPTION_CHANGE,
+        payload: value
+    };
+};
+
+export const distributionOptionChanged = (value) => {
+    return {
+        type: DISTRIBUTION_OPTION_CHANGE,
         payload: value
     };
 };

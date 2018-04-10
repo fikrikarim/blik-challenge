@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { analyticsDelivery, analyticsDistribution, analyticsThroughput, deliveryOptionChanged } from '../actions';
+import { 
+    analyticsDelivery, 
+    analyticsDistribution, 
+    analyticsThroughput, 
+    deliveryOptionChanged, 
+    distributionOptionChanged 
+} from '../actions';
 import AnalyticsDelivery from './AnalyticsDelivery';
 import AnalyticsDistribution from './AnalyticsDistribution';
 import AnalyticsThroughput from './AnalyticsThroughput';
@@ -22,8 +28,12 @@ class AnalyticsDetails extends Component {
         this.props.analyticsDelivery(this.analyticsId, e.target.value)
     }
 
+    handleDistributionOption(e) {
+        this.props.distributionOptionChanged(e.target.value)
+    }
+
     render() {
-        const { deliveries, distributions, throughputs } = this.props
+        const { deliveries, distributions, throughputs, distributionOption } = this.props
         
         return (
             <div>
@@ -36,7 +46,12 @@ class AnalyticsDetails extends Component {
                 </select>
                 <AnalyticsDelivery data={deliveries} />
                 <p>Distribution of SLTs in the circulation: </p>
-                <AnalyticsDistribution data={distributions} />
+                <form onChange={this.handleDistributionOption.bind(this)}>
+                    <input type="radio" name="distributionOption" value="alle" defaultChecked={distributionOption === "alle" ? "checked" : ""}/> Alle
+                    <input type="radio" name="distributionOption" value="leergut" defaultChecked={distributionOption === "leergut" ? "checked" : ""}/> Leergut
+                    <input type="radio" name="distributionOption" value="vollgut" defaultChecked={distributionOption === "vollgut" ? "checked" : ""}/> Vollgut
+                </form>
+                <AnalyticsDistribution data={distributions} distributionOption={distributionOption} />
                 <p>Process runtime: </p>
                 <AnalyticsThroughput data={throughputs} />
             </div>
@@ -49,6 +64,7 @@ const mapStateToProps = state => ({
     distributions: state.analytics.distributions,
     throughputs: state.analytics.throughputs,
     deliveryOption: state.analytics.deliveryOption,
+    distributionOption: state.analytics.distributionOption,
 });
 
 export default
@@ -58,6 +74,7 @@ export default
             analyticsDelivery,
             analyticsDistribution,
             analyticsThroughput,
-            deliveryOptionChanged
+            deliveryOptionChanged,
+            distributionOptionChanged
         }
     )(AnalyticsDetails);

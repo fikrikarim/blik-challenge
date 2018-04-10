@@ -196,3 +196,5 @@ function transformData(template, arrayOfData={}) {
 - Now working on our next TODO: Option for week or month for deliveries
 - Yay it's working. Note that I think the API backend for `/delivery` is not showing the right data for per week and per month. But I think that's out of scope of this challenge. I don't really know the real backend structure of the API.
 - Now working on our next TODO: Option for choosing Alle SLT, Leergut SLT, or Vollgut SLT for throughput. It should be similar to the previous TODO.
+- Okay now it's done. But graph is always reversed when we click the button because we call `.reverse()` when rendering the graph, and `reverse()` method modify the array being called. We should move the reverse method into the action creator or on the reducer.
+- 

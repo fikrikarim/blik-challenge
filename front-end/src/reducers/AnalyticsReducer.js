@@ -11,7 +11,8 @@ import {
     ANALYTICS_THROUGHPUT_REQUESTED,
     ANALYTICS_THROUGHPUT_SUCCESSED,
     ANALYTICS_THROUGHPUT_FAILED,
-    DELIVERY_OPTION_CHANGE
+    DELIVERY_OPTION_CHANGE,
+    DISTRIBUTION_OPTION_CHANGE
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -20,7 +21,8 @@ const INITIAL_STATE = {
     deliveries: '',
     distributions: '',
     throughputs: '',
-    deliveryOption: 'week'
+    deliveryOption: 'week',
+    distributionOption: 'alle'
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -51,6 +53,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, error: action.payload };
         case DELIVERY_OPTION_CHANGE:
             return { ...state, deliveryOption: action.payload };
+        case DISTRIBUTION_OPTION_CHANGE:
+            return { ...state, distributionOption: action.payload };
         default:
             return state;
     }
